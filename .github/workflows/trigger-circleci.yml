@@ -1,0 +1,30 @@
+name: Trigger CircleCI Pipeline
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  trigger-circleci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout (optional)
+        uses: actions/checkout@v4
+
+      - name: Call CircleCI pipeline
+        env:
+          CIRCLECI_TOKEN: ${{ secrets.CIRCLECI_TOKEN }}
+          TARGET_PROJECT_SLUG: "gh/ashiiikhan/CI-CD_Pipeline"
+          TARGET_BRANCH: "main"
+        run: |
+          echo "Triggering CircleCI pipeline for $TARGET_PROJECT_SLUG..."
+
+          curl -X POST "https://circleci.com/api/v2/project/${TARGET_PROJECT_SLUG}/pipeline" \
+            -H "Circle-Token: ${CIRCLECI_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d "{\"branch\":\"${TARGET_BRANCH}\"}" \
+            -o circle_response.json -s
+
+          echo "CircleCI Response:"
+          cat circle_response.json
