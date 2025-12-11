@@ -1,0 +1,4 @@
+body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:2rem;background:#f7fafc;color:#111}
+main{max-width:700px;margin:2rem auto;padding:1.6rem;border-radius:10px;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+button{padding:.6rem 1rem;border-radius:6px;border:0;background:#0ea5a3;color:#fff;cursor:pointer}
+#status{margin-top:1rem;color:#666}
